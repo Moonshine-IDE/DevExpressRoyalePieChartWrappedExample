@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:j="library://ns.apache.org/royale/jewel" xmlns:pieChart="classes.com.devexpress.js.pieChart.*" xmlns:js="library://ns.apache.org/royale/basic"
+		 itemsVerticalAlign="itemsCentered">
+	<j:beads>
+		<js:ContainerDataBinding />
+	</j:beads>
+	<fx:Script>
+	<![CDATA[
+			import classes.com.devexpress.js.pieChart.events.PieEvent;
+
+			[Bindable]
+			private var dataSource:Array = [{
+											country: 'Russia',
+											area: 12
+										}, 
+										{
+											country: 'Canada',
+											area: 7
+										}, 
+										{
+											country: 'USA',
+											area: 7
+										}, 
+										{
+											country: 'China',
+											area: 7
+										}, 
+										{
+											country: 'Brazil',
+											area: 6
+										}, 
+										{
+											country: 'Australia',
+											area: 5
+										}, 
+										{
+											country: 'India',
+											area: 2
+										}, 
+										{
+											country: 'Others',
+											area: 55
+										}];
+				[Bindable]
+				private var series:Object = [
+					{
+							argumentField: 'country',
+							valueField: 'area',
+							label: {
+							visible: true,
+							connector: {
+								visible: true,
+								width: 1
+							}
+						}
+					}
+				];
+		
+		private function onPointClick(event:PieEvent):void
+		{
+			toggleVisibility(event.item.target);
+		}
+			
+		private function onLegendClick(event:PieEvent):void
+		{
+			toggleVisibility(event.item.points[0]);
+		}
+					
+		private function toggleVisibility(item:Object):void 
+		{
+			if (item.isVisible()) 
+			{
+				item.hide();
+			} 
+			else 
+			{
+				item.show();
+			}
+		}
+	]]>
+</fx:Script>
+	<pieChart:Pie dataSource="{dataSource}" series="{series}" palette="bright" title="Area of Countries" export="{{enabled: true}}"
+				  pointClickPie="onPointClick(event)" legendClickPie="onLegendClick(event)"/>
+</j:VGroup>

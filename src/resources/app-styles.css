@@ -1,0 +1,7 @@
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace j "library://ns.apache.org/royale/jewel";
+
+.pieChartJS {
+	IBeadView: ClassReference("classes.com.devexpress.js.pieChart.beads.PieView");
+	IBeadModel: ClassReference("classes.com.devexpress.js.pieChart.beads.models.PieModel");
+}
